@@ -62,10 +62,6 @@ export const FlatpageRenderer = ({ page }: { page: PageEntity }) => (
   </article>
 );
 
-const RenderUser = ({ user }: Object) => (
-  <Link to={`/users/${user.username}`}>{user.fullName}</Link>
-);
-
 export const GroupRenderer = ({
   page,
   pageInfo
@@ -73,7 +69,7 @@ export const GroupRenderer = ({
   page: Object,
   pageInfo: Object
 }) => {
-  const { membershipsByRole, text, logo } = page;
+  const { membershipsByRole, text } = page;
 
   const { leader: leaders = [], member: members = [] } = membershipsByRole;
 
@@ -119,6 +115,8 @@ const PageDetail = ({
   }
   const { editUrl, actionGrant = [], isComplete } = selectedPageInfo;
   const pictureLabel = 'Listingløpet 1985';
+  const { category } = selectedPage;
+
   return (
     <Content className={styles.cont}>
       <div className={styles.main}>
@@ -126,9 +124,10 @@ const PageDetail = ({
           <div className={styles.side}>
             <aside className={styles.sidebar}>
               <div className={styles.sidebarTop}>
-                <h3> Om Abakus </h3>
+                <h3 className={styles.sidebarHeader}> Om Abakus </h3>
+                <h4 className={styles.sidebarSubtitle}>{category}</h4>
                 <div className={styles.sidebarPicture}>
-                  <h4> {"Abakus' Fortid"}</h4>
+                  <h4 className={styles.pictureHeader}> {"Abakus' Fortid"}</h4>
                   <a href="https://abakus.no/photos/183/picture/460">
                     <img
                       alt={pictureLabel}
